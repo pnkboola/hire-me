@@ -79,9 +79,9 @@ class App extends React.Component {
     return (
       <div className="login-box">
         <h4>
-          <a onClick={this.handleTriggerPrToolClick}>
+          <a href="/#" onClick={this.handleTriggerPrToolClick}>
             Hiring Tool
-          </a>  <a onClick={this.handleCheckStatusClick}>
+          </a>  <a href="/#" onClick={this.handleCheckStatusClick}>
                     Check Status
                  </a>
         </h4>

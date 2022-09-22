@@ -2,8 +2,6 @@ import React from 'react';
 import '../css/form.css';
 import CulpritPrTriggerResponse from './CulpritPrTriggerResponse';
 
-import response from "../resources/response.json";
-
 class TriggerCulpritPR extends React.Component {
     constructor(props){
         super();
@@ -123,7 +121,7 @@ class TriggerCulpritPR extends React.Component {
                                 <input type="text" value={this.state.triggerApiRequestParams.query} onChange={this.handleQueryChange} />
                                 <label>Query</label>
                               </div>
-                              <a onClick={this.handleSubmit}>
+                              <a href="/#" onClick={this.handleSubmit}>
                                 <span></span>
                                 <span></span>
                                 <span></span>

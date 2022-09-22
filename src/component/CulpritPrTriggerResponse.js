@@ -1,4 +1,4 @@
-import React, { Profiler } from 'react';
+import React from 'react';
 import '../css/form.css';
 import '../css/table.css';
 import '../css/cards.css';
@@ -48,7 +48,7 @@ export default class CulpritPrTriggerResponse extends React.Component {
             },
             body: JSON.stringify(body)
           };
-        const response = await fetch(
+        await fetch(
             'https://prod-26.westcentralus.logic.azure.com:443/workflows/717edc33336c4213ad455d23ee8a8311/triggers/manual/paths/invoke?api-version=2016-06-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=spTfT0NLIO_mHlgAsKnaCkeTNTx_ieClpBeOYZloGTc', 
             requestOptions);
         // const data = await response.json();
@@ -76,7 +76,7 @@ export default class CulpritPrTriggerResponse extends React.Component {
                                   <p><span style={{"fontWeight": "bold"}}>Languages: </span>{person.languages_known}</p>
                                   <br/>
                                   <p><span style={{"fontWeight": "bold"}}>Interest Area: </span>{person.interest_area}</p>
-                                  <a onClick={event => this.contactCandidate(event, person.email_id)}> Contact Dev</a>
+                                  <a href="/#" onClick={event => this.contactCandidate(event, person.email_id)}> Contact Dev</a>
                               </div>
                             </div>
                         </div>

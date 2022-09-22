@@ -77,7 +77,7 @@ class CheckStatus extends React.Component {
                                 <label>Status Query URI</label>
                               </div>
                       
-                              <a onClick={this.handleSubmit}>
+                              <a href="/#" onClick={this.handleSubmit}>
                                 <span></span>
                                 <span></span>
                                 <span></span>
