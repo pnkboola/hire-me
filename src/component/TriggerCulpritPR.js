@@ -21,7 +21,8 @@ class TriggerCulpritPR extends React.Component {
             terminatePostUri: '',
             purgeHistoryDeleteUri: '',
             restartPostUri: '',
-            candidates: []
+            recruiterEmailId: '',
+            jdlink: ''
           },
           showTriggerApiResponseTable: props.showTriggerApiResponseTable,
           triggerApiResponseStatus: ''
@@ -88,7 +89,9 @@ class TriggerCulpritPR extends React.Component {
 
           const triggerApiResponseParams = {
 
-            data: data.value
+            data: data.value,
+            recruiterEmailId: this.state.triggerApiRequestParams.recruiterEmailId,
+            jdlink: this.state.triggerApiRequestParams.jdlink
           }
           console.log(triggerApiResponseParams);
 

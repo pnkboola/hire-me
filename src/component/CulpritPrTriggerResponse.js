@@ -7,7 +7,8 @@ export default class CulpritPrTriggerResponse extends React.Component {
     constructor(props){
         super();
         this.state = {
-            triggerApiResponseParams: props.triggerApiResponseParams
+            triggerApiResponseParams: props.triggerApiResponseParams,
+            contactedCandidates: []
         };
 
         this.handleStatusCheckUriClick = this.handleStatusCheckUriClick.bind(this);
@@ -25,18 +26,19 @@ export default class CulpritPrTriggerResponse extends React.Component {
         });
       }
 
-      async contactCandidate(event, candidateEmailId){
+      async contactCandidate(event, candidateEmailId, id){
         event.preventDefault();
         this.setState({checkStatus: true});
-        console.log('Contacted candidate ');
-        console.log('this.state.triggerApiResponseParams : ', this.state.triggerApiResponseParams);
 
-        var body = {
+        if (this.state.contactedCandidates.indexOf(id) === -1) {
+          console.log('Contacted candidate ');
+          console.log('this.state.triggerApiResponseParams : ', this.state.triggerApiResponseParams);
+          var body = {
             "CandidateEmailID": candidateEmailId,
-            "RecruiterEmailID": "pankajboola@microsoft.com",
+            "RecruiterEmailID": this.state.triggerApiResponseParams.recruiterEmailId,
             "IsCandidate": "false",
             "IsCandidateInterested": "false",
-            "JDLink": "https://careers.microsoft.com/i/us/en/job/1467744/Cloud-Solution-Architecture"
+            "JDLink": this.state.triggerApiResponseParams.jdlink
           };
   
           const requestOptions = {
@@ -48,17 +50,25 @@ export default class CulpritPrTriggerResponse extends React.Component {
             },
             body: JSON.stringify(body)
           };
-        await fetch(
+        const response = await fetch(
             'https://prod-26.westcentralus.logic.azure.com:443/workflows/717edc33336c4213ad455d23ee8a8311/triggers/manual/paths/invoke?api-version=2016-06-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=spTfT0NLIO_mHlgAsKnaCkeTNTx_ieClpBeOYZloGTc', 
             requestOptions);
-        // const data = await response.json();
-        // console.log('fetched data: response: ' + JSON.stringify(data));
+        const data = await response.json();
+        console.log('Pankaj fetched data: response: ' + JSON.stringify(data));
+
+        if (response.status === 200) {
+          let contactedCandidates = this.state.contactedCandidates;
+          contactedCandidates.push(id);
+          this.setState({contactedCandidates: contactedCandidates});
+        }
+        } else {
+          console.log("Candidate has been contacted already.");
+        }
       }
 
       render() {
         return (
             <div className="container">
-                {console.log('RESPONSE PANKAJ' + JSON.stringify(this.props.triggerApiResponseParams))}
                 <div>
                 
                 {
@@ -76,7 +86,9 @@ export default class CulpritPrTriggerResponse extends React.Component {
                                   <p><span style={{"fontWeight": "bold"}}>Languages: </span>{person.languages_known}</p>
                                   <br/>
                                   <p><span style={{"fontWeight": "bold"}}>Interest Area: </span>{person.interest_area}</p>
-                                  <a href="/#" onClick={event => this.contactCandidate(event, person.email_id)}> Contact Dev</a>
+                                  <a href="/#" onClick={event => this.contactCandidate(event, person.email_id, person.id)}>
+                                     {(this.state.contactedCandidates.indexOf(person.id) === -1) ? "Contact Dev" : "Contacted"}
+                                  </a>
                               </div>
                             </div>
                         </div>
