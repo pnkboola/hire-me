@@ -1,0 +1,78 @@
+.container {
+	position: relative;
+	top: 50%;
+	left: 50%;
+    right: 50%;
+	transform: translate(-50%, 0%);
+    overflow: auto;
+    height: 100%;
+}
+
+table {
+    table-layout: fixed;
+    width: 100%;
+}
+
+.login-box .table-box {
+	border-collapse: collapse;
+	overflow: auto;
+	box-shadow: 0 0 20px rgba(0,0,0,0.1);
+    top: 50%;
+    left: 50%;
+    right: 50%;
+    width: 400px;
+    padding: 40px;
+    position: relative;
+}
+
+.login-box th,
+td {
+	padding: 15px;
+	background: transparent;
+	color: #fff;
+    word-wrap: break-word;
+}
+
+.login-box th {
+	text-align: left;
+    word-wrap: break-word;
+}
+
+.login-box thead th {
+    background-color: rgba(7, 19, 93, 0.633);
+    word-wrap: break-word;
+}
+
+.login-box tbody td {
+	position: relative;
+    word-wrap: break-word;
+}
+
+a {
+    position: relative;
+    display: inline-block;
+    padding: 10px 20px;
+    color: #03e9f4;
+    font-size: 16px;
+    text-decoration: none;
+    text-transform: uppercase;
+    overflow: hidden;
+    transition: .5s;
+    margin-top: 40px;
+    letter-spacing: 4px
+  }
+  
+  a:hover {
+    background: #03e9f4;
+    color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 0 5px #03e9f4,
+                0 0 25px #03e9f4,
+                0 0 50px #03e9f4,
+                0 0 100px #03e9f4;
+  }
+  
+  a span {
+    position: absolute;
+    display: block;
+  }
